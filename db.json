@@ -8,16 +8,23 @@
             "phone": "08106379424",
             "username": "Kanach",
             "password": "Elmagnifico",
+            "requests": [
+                {
+                    "id": 1,
+                    "amount": "100000",
+                    "duration": "9",
+                    "approval": true
+                }
+            ],
             "isAdmin": true
         }
     ],
     "borrowers": [
-        {
+        {   
+  
             "name": "Kaosilisochukwu",
-            "surname": "Nwizu",
-            "amount": "100000",
-            "duration": "9",
-            "approval": true
+            "surname": "Nwizu"
+           
         }
     ],
     "profile": {
