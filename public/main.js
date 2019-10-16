@@ -44,7 +44,7 @@ $('#id').text(`${sessionStorage.getItem('user')}`)
 $('#logout').click(function (e) {
     e.preventDefault();
     sessionStorage.clear();
-   window.location.href = "http://localhost:3000/main.html"
+    window.location.href = "http://localhost:3000/main.html"
 })
 
 $(document).ready(function () {
@@ -66,7 +66,7 @@ $(document).ready(function () {
                         sessionStorage.setItem('id', data[i].id);
                         alert("Admin login");
                         window.location.href = "http://localhost:3000/admin.html"
-                    }else if(data[i].username.toString() == logUser.toString() && data[i].password.toString() == logPass.toString()){
+                    } else if (data[i].username.toString() == logUser.toString() && data[i].password.toString() == logPass.toString()) {
                         sessionStorage.setItem('user', data[i].username);
                         sessionStorage.setItem('pass', data[i].password);
                         sessionStorage.setItem('id', data[i].id);
@@ -91,13 +91,13 @@ $(document).ready(function () {
 $(window).ready(function () {
     $('#request-btn').click(function (e) {
         e.preventDefault();
-       let reqName = $('#request-name').val();
+        let reqName = $('#request-name').val();
         let reqSurname = $('#request-surname').val();
         let reqAmount = $('#loan-request').val();
         let returnDate = $('#pay-date').val();
         let myData = {
-           // "name": reqName,
-           // "surname": reqSurname,
+            // "name": reqName,
+            // "surname": reqSurname,
             "requests": reqAmount,
             "duration": returnDate
         }
@@ -111,7 +111,7 @@ $(window).ready(function () {
                 alert('you are good to go');
                 window.location.href = "http://localhost:3000/login.html"
             },
-            error: function(error){
+            error: function (error) {
                 console.log(error)
             }
         })
@@ -128,8 +128,8 @@ $(window).ready(function () {
             dataType: "json",
             contentType: "application/json",
             success: function (data) {
-                for (let i = 0; i < data.length; i += 1) {                    
-                        $("#customers").append(`<tr>
+                for (let i = 0; i < data.length; i += 1) {
+                    $("#customers").append(`<tr>
                         <td id="table-name">${data[i].name}</td>
                         <td id="table-surname">${data[i].surname}</td>
                         <td id="table-amount">${data[i].amount}</td>
@@ -137,8 +137,8 @@ $(window).ready(function () {
                         <td id="table-duration">${data[i].id}</td>
        
                       </tr>`)
-                       // window.location.href = "http://localhost:3000/request.html"
-                    
+                    // window.location.href = "http://localhost:3000/request.html"
+
                 }
             },
             error: function (errorThrown) {
@@ -157,25 +157,14 @@ $(window).ready(function () {
             dataType: "json",
             contentType: "application/json",
             success: function (data) {
-                for (let i = 0; i < data.length; i += 1) {  
+                for (let i = 0; i < data.length; i += 1) {
                     if (data[i].username.toString() == sessionStorage.getItem('user').toString()) {
                         $("#dash-request").append(`<tr>
-                        <td id="table-amount">${data[i].amount}</td>
                         <td id="table-duration">${data[i].id}</td>
-       
+                        <td id="table-amount">${data[i].amount}</td>
+                        <td id="table-amount">${data[i].approval}</td> 
                       </tr>`)
                     }
-                    // else if(data[i].username.toString() == sessionStorage.getItem('user').toString() && data[i].password.toString() == sessionStorage.getItem('user').toString()){
-                    //     sessionStorage.setItem('user', data[i].username);
-                    //     sessionStorage.setItem('pass', data[i].password);
-                    //     sessionStorage.setItem('id', data[i].id);
-                    //     console.log(sessionStorage.getItem('id'))
-                    //     alert(`welcome ${logUser}`);
-                    //     window.location.href = "http://localhost:3000/dash.html"
-                    // }                
-                       
-                       // window.location.href = "http://localhost:3000/request.html"
-                    
                 }
             },
             error: function (errorThrown) {
@@ -193,7 +182,7 @@ $(window).ready(function () {
             type: "PUT",
             url: `http://localhost:3000/borrowers/${num}`,
             dataType: "json",
-            contentType: "application.json", 
+            contentType: "application.json",
         })
     })
 })
@@ -209,3 +198,75 @@ $('#user-modify').click(function (e) {
 $('#user-delete').click(function (e) {
     e.preventDefault();
 })
+
+$(window).ready(function () {
+    $("#user-delete").click(function (e) {
+        let ids = $('#cusId').val()
+        e.preventDefault();
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:3000/borrowers",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data) {
+                for (let i = 0; i < data.length; i += 1) {
+                    if (data[i].id.toString() == ids.toString() && data[i].approval == true) {
+                        alert('Request has already been approved')
+                        i = data.length;
+                    } else if( data[i].id.toString() == ids.toString() && data[i].approval == false){
+
+                        let jsonD = {
+
+                            "id": `${ids}`
+                        }
+                        $.ajax({
+                            url: `http://localhost:3000/borrowers/${ids}`,
+                            method: 'DELETE',
+                            dataType: 'json',
+                            contentType: 'application/json',
+                            data: JSON.stringify(jsonD),
+
+                            success: function (data) {
+                                console.log(data);
+                                alert('successfully DELETED');
+                                location.reload();
+                            },
+                            error: function () {
+                                alert('error')
+                            }
+                        })
+                    }
+                }
+            },
+            error: function (errorThrown) {
+                console.log(errorThrown);
+            }
+        })
+    })
+})
+
+
+// $('#user-delete').click(function (e) {
+//     e.preventDefault();
+//     let ids = $('#cusId').val()
+//     let jsonD = {
+
+//         "id": `${ids}`
+//     }
+//     $.ajax({
+//         url: `http://localhost:3000/borrowers/${ids}`,
+//         method: 'DELETE',
+//         dataType: 'json',
+//         contentType: 'application/json',
+//         data: JSON.stringify(jsonD),
+
+//         success: function (data) {
+//             console.log(data);
+//             alert('successfully DELETED');
+//             location.reload();
+//         },
+//         error: function () {
+//             alert('error')
+//         }
+//     })
+// })
