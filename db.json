@@ -1,33 +1,37 @@
 {
-    "users": [
+  "users": [
+    {
+      "id": 1,
+      "name": "Kaosilisochukwu",
+      "surname": "Nwizu",
+      "email": "kcharlse94@gmail.com",
+      "phone": "08106379424",
+      "username": "Kanach",
+      "password": "Elmagnifico",
+      "requests": [
         {
-            "id": 1,
-            "name": "Kaosilisochukwu",
-            "surname": "Nwizu",
-            "email": "kcharlse94@gmail.com",
-            "phone": "08106379424",
-            "username": "Kanach",
-            "password": "Elmagnifico",
-            "requests": [
-                {
-                    "id": 1,
-                    "amount": "100000",
-                    "duration": "9",
-                    "approval": true
-                }
-            ],
-            "isAdmin": true
+          "id": 1,
+          "amount": "100000",
+          "duration": "9",
+          "approval": true
         }
-    ],
-    "borrowers": [
-        {   
-  
-            "name": "Kaosilisochukwu",
-            "surname": "Nwizu"
-           
-        }
-    ],
-    "profile": {
-        "name": "typicode"
+      ],
+      "isAdmin": true
     }
+  ],
+  "borrowers": [
+    {
+      "id": 1,
+      "name": "Kaosilisochukwu",
+      "surname": "Nwizu"
+    },
+    {
+      "requests": "",
+      "duration": "",
+      "id": 2
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
 }

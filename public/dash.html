@@ -19,24 +19,56 @@
             <a href="about.html">About</a>
         </div>
     </div>
-    <div class="user-dash">
+   <div> <button class="submit" id="user-requests" style="margin: 20px">Get Requests</button></div>
+
+    <div class="user-dash" id="user-dash">
         <h1>My Dash</h1>
         <table id="dash-request">
             <tr>
-                <th>Surename</th>
                 <th>Amount</th>
                 <th>Duration (Months)</th>
-                <th>userId</th>
-                <th>userId</th>
-            </tr>
-            <tr>
-                <td>Surename</td>
-                <td>Amount</td>
-                <td>Duration (Months)</td>
-                <td><button class="dash-btn submit" id="update-req">Update Request</button></td>
-                <td><button class="dash-btn submit" id="cancel-req">Cancel Request</button></td>
-            </tr>
+                <th>Request Id</th>
+            </tr>        
         </table>
+        <form action="">
+            <div class="row">
+                <div class="col-25">
+                    <label for="status">Confirmation</label>
+                </div>
+                <div class="row-75">
+                    <input type="number" name="status" id="cusId">
+                </div>
+            </div>
+        </form><br>
+        <div style="margin: 0 100px;">
+            <button class="submit" id="user-modify">Modify Request</button>
+            <button class="submit" id="user-delete" style="float:right;">Delete Request</button>
+        </div>
+
+        <div class="hidded" id="hidden">
+            <div class="container" style="height: 100vh">
+                <form action="">
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="uname">User Name</label>
+                        </div>
+                        <div class="row-75">
+                            <input type="text" id="username" name="username" placeholder="Your Username">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="pword">Password</label>
+                        </div>
+                        <div class="row-75">
+                            <input type="password" id="password" name="password" placeholder="Your password">
+                        </div>
+                    </div><br>
+                    <button class="submit" id="login-btn">Login</button>
+                </form><br><br><br>
+        </div>
+
+        
     </div>
 
 </body>

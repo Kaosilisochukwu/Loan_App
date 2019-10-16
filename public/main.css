@@ -11,7 +11,9 @@ label {
     padding: 12px 12px 12px 0;
     display: inline-block;
 }
-
+.hidded{
+  display: none;
+}
 .submit {
     background-color: #4caf50;
     color: white;

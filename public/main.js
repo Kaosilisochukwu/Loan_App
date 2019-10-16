@@ -1,3 +1,4 @@
+
 $('#update-req').click(function (e) {
     e.preventDefault();
     window.location.href = "http://localhost:3000/user-update.html"
@@ -53,6 +54,9 @@ $(document).ready(function () {
                     if (data[i].username.toString() == logUser.toString() && data[i].password.toString() == logPass.toString() && data[i].isAdmin == true) {
                         alert("Admin login");
                         window.location.href = "http://localhost:3000/admin.html"
+                    }else if(data[i].username.toString() == logUser.toString() && data[i].password.toString() == logPass.toString()){
+                        alert(`welcome ${logUser}`);
+                        window.location.href = "http://localhost:3000/dash.html"
                     }
                 }
             },
@@ -63,6 +67,11 @@ $(document).ready(function () {
     })
 })
 
+$('#user-requests').click(function (e) {
+    e.preventDefault();
+    $('#user-dash').addClass('#remove')
+})
+
 $(window).ready(function () {
     $('#request-btn').click(function (e) {
         e.preventDefault();
@@ -71,9 +80,9 @@ $(window).ready(function () {
         let reqAmount = $('#loan-request').val();
         let returnDate = $('#pay-date').val();
         let myData = {
-            "name": reqName,
-            "surname": reqSurname,
-            "amount": reqAmount,
+           // "name": reqName,
+           // "surname": reqSurname,
+            "requests": reqAmount,
             "duration": returnDate
         }
         $.ajax({
@@ -85,6 +94,9 @@ $(window).ready(function () {
             success: function () {
                 alert('you are good to go');
                 window.location.href = "http://localhost:3000/login.html"
+            },
+            error: function(error){
+                console.log(error)
             }
         })
     })
@@ -121,6 +133,35 @@ $(window).ready(function () {
 })
 
 $(window).ready(function () {
+    $("#user-requests").click(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:3000/borrowers",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data) {
+                for (let i = 0; i < data.length; i += 1) {                    
+                        $("#dash-request").append(`<tr>
+                        <td id="table-name">${data[i].name}</td>
+                        <td id="table-surname">${data[i].surname}</td>
+                        <td id="table-amount">${data[i].amount}</td>
+                        <td id="table-duration">${data[i].duration} Months</td>
+                        <td id="table-duration">${data[i].id}</td>
+       
+                      </tr>`)
+                       // window.location.href = "http://localhost:3000/request.html"
+                    
+                }
+            },
+            error: function (errorThrown) {
+                console.log(errorThrown);
+            }
+        })
+    })
+})
+
+$(window).ready(function () {
     $('#approve').click(function (e) {
         e.preventDefault();
         let num = $('#cusId').val();
@@ -131,4 +172,16 @@ $(window).ready(function () {
             contentType: "application.json", 
         })
     })
+})
+
+$('#user-modify').click(function (e) {
+    e.preventDefault();
+    $('#user-modify').remove();
+    $('#user-delete').remove();
+    $('#hidden').removeClass('hidded');
+    $('.user-dash').append(``)
+})
+
+$('#user-delete').click(function (e) {
+    e.preventDefault();
 })
