@@ -38,6 +38,14 @@ $(document).ready(function () {
     })
 })
 
+$('#id').text(`${sessionStorage.getItem('user')}`)
+
+$('#logout').click(function (e) {
+    e.preventDefault();
+    sessionStorage.clear();
+   window.location.href = "http://localhost:3000/main.html"
+})
+
 $(document).ready(function () {
     $('#login-btn').click(function (e) {
         e.preventDefault();
@@ -52,9 +60,16 @@ $(document).ready(function () {
             success: function (data) {
                 for (let i = 0; i < data.length; i += 1) {
                     if (data[i].username.toString() == logUser.toString() && data[i].password.toString() == logPass.toString() && data[i].isAdmin == true) {
+                        sessionStorage.setItem('user', data[i].username);
+                        sessionStorage.setItem('pass', data[i].password);
+                        sessionStorage.setItem('id', data[i].id);
                         alert("Admin login");
                         window.location.href = "http://localhost:3000/admin.html"
                     }else if(data[i].username.toString() == logUser.toString() && data[i].password.toString() == logPass.toString()){
+                        sessionStorage.setItem('user', data[i].username);
+                        sessionStorage.setItem('pass', data[i].password);
+                        sessionStorage.setItem('id', data[i].id);
+                        console.log(sessionStorage.getItem('id'))
                         alert(`welcome ${logUser}`);
                         window.location.href = "http://localhost:3000/dash.html"
                     }

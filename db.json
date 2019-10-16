@@ -8,15 +8,39 @@
       "phone": "08106379424",
       "username": "Kanach",
       "password": "Elmagnifico",
-      "requests": [
-        {
-          "id": 1,
-          "amount": "100000",
-          "duration": "9",
-          "approval": true
-        }
-      ],
+      "requests": {
+        "from": [
+          {
+            "id": 1,
+            "amount": "100000",
+            "duration": "9",
+            "approval": true
+          }
+        ]
+      },
       "isAdmin": true
+    },    
+    {
+      "id": 2,
+      "name": "Obinwanne",
+      "surname": "Nwizu",
+      "email": "kcharlse94@gmail.com",
+      "phone": "08106379424",
+      "username": "bibis",
+      "password": "bibis",
+      "requests": "100000",
+     "isAdmin": false
+    },
+    {
+      "id": 2,
+      "name": "Obinwanne",
+      "surname": "Nwizu",
+      "email": "kcharlse94@gmail.com",
+      "phone": "08106379424",
+      "username": "bibis",
+      "password": "bibis",
+      "requests": "100000",
+     "isAdmin": false
     }
   ],
   "borrowers": [
