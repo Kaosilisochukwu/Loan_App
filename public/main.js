@@ -20,7 +20,8 @@ $(document).ready(function () {
             "email": email,
             "phone": uphone,
             "username": uname,
-            "password": upass
+            "password": upass,
+            "isAdmin": false
         }
 
         $.ajax({
@@ -82,10 +83,10 @@ $(document).ready(function () {
     })
 })
 
-$('#user-requests').click(function (e) {
-    e.preventDefault();
-    $('#user-dash').addClass('#remove')
-})
+// $('#user-requests').click(function (e) {
+//     e.preventDefault();
+//     $('#user-dash').addClass('#remove')
+// })
 
 $(window).ready(function () {
     $('#request-btn').click(function (e) {
@@ -156,15 +157,23 @@ $(window).ready(function () {
             dataType: "json",
             contentType: "application/json",
             success: function (data) {
-                for (let i = 0; i < data.length; i += 1) {                    
+                for (let i = 0; i < data.length; i += 1) {  
+                    if (data[i].username.toString() == sessionStorage.getItem('user').toString()) {
                         $("#dash-request").append(`<tr>
-                        <td id="table-name">${data[i].name}</td>
-                        <td id="table-surname">${data[i].surname}</td>
                         <td id="table-amount">${data[i].amount}</td>
-                        <td id="table-duration">${data[i].duration} Months</td>
                         <td id="table-duration">${data[i].id}</td>
        
                       </tr>`)
+                    }
+                    // else if(data[i].username.toString() == sessionStorage.getItem('user').toString() && data[i].password.toString() == sessionStorage.getItem('user').toString()){
+                    //     sessionStorage.setItem('user', data[i].username);
+                    //     sessionStorage.setItem('pass', data[i].password);
+                    //     sessionStorage.setItem('id', data[i].id);
+                    //     console.log(sessionStorage.getItem('id'))
+                    //     alert(`welcome ${logUser}`);
+                    //     window.location.href = "http://localhost:3000/dash.html"
+                    // }                
+                       
                        // window.location.href = "http://localhost:3000/request.html"
                     
                 }

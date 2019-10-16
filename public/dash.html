@@ -14,7 +14,7 @@
         <a class="active" href="main.html">Home</a>
         <div class="right">
             <a href="#"id="id"></a>
-            <a href="register.html">Register</a>
+            <a href="request.html">Request Loan</a>
             <a href="about.html">About</a>
             <a href="main.html" id="logout">Logout</a>
         </div>
@@ -26,23 +26,22 @@
         <table id="dash-request">
             <tr>
                 <th>Amount</th>
-                <th>Duration (Months)</th>
                 <th>Request Id</th>
             </tr>        
         </table>
         <form action="">
             <div class="row">
                 <div class="col-25">
-                    <label for="status">Confirmation</label>
+                    <label for="status">Request Id</label>
                 </div>
                 <div class="row-75">
-                    <input type="number" name="status" id="cusId">
+                    <input type="number" name="status" id="cusId" placeholder="Type in the Id of the request you want to modify or delete">
                 </div>
             </div>
         </form><br>
         <div style="margin: 0 100px;">
-            <button class="submit" id="user-modify">Modify Request</button>
-            <button class="submit" id="user-delete" style="float:right;">Delete Request</button>
+            <button class="submit" id="user-modify">Click to Modify</button>
+            <button class="submit" id="user-delete" style="float:right;">Click to Delete</button>
         </div>
 
         <div class="hidded" id="hidden">
@@ -50,21 +49,14 @@
                 <form action="">
                     <div class="row">
                         <div class="col-25">
-                            <label for="uname">User Name</label>
+                            <label for="uname">New Amount</label>
                         </div>
                         <div class="row-75">
-                            <input type="text" id="username" name="username" placeholder="Your Username">
+                            <input type="number" id="username" name="username" placeholder="">
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-25">
-                            <label for="pword">Password</label>
-                        </div>
-                        <div class="row-75">
-                            <input type="password" id="password" name="password" placeholder="Your password">
-                        </div>
-                    </div><br>
-                    <button class="submit" id="login-btn">Login</button>
+                    </div>                   
+                    <br>
+                    <button class="submit" id="change-btn">Modify</button>
                 </form><br><br><br>
         </div>
 

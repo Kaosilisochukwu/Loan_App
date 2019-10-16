@@ -8,28 +8,7 @@
       "phone": "08106379424",
       "username": "Kanach",
       "password": "Elmagnifico",
-      "requests": {
-        "from": [
-          {
-            "id": 1,
-            "amount": "100000",
-            "duration": "9",
-            "approval": true
-          }
-        ]
-      },
       "isAdmin": true
-    },    
-    {
-      "id": 2,
-      "name": "Obinwanne",
-      "surname": "Nwizu",
-      "email": "kcharlse94@gmail.com",
-      "phone": "08106379424",
-      "username": "bibis",
-      "password": "bibis",
-      "requests": "100000",
-     "isAdmin": false
     },
     {
       "id": 2,
@@ -39,20 +18,37 @@
       "phone": "08106379424",
       "username": "bibis",
       "password": "bibis",
-      "requests": "100000",
-     "isAdmin": false
+      "isAdmin": false
+    },
+    {
+      "name": "Bliss",
+      "surname": "Okpala",
+      "email": "bliss@gmail.com",
+      "phone": "012556565",
+      "username": "cutie",
+      "password": "cute",
+      "isAdmin": false,
+      "id": 3
     }
   ],
   "borrowers": [
     {
       "id": 1,
-      "name": "Kaosilisochukwu",
-      "surname": "Nwizu"
+      "username": "Kanach",
+      "password": "Elmagnifico",
+      "amount": "100000"
     },
-    {
-      "requests": "",
-      "duration": "",
-      "id": 2
+    {    
+    "username": "cutie",
+    "password": "cute",
+    "amount": "15000",
+    "id": 2
+    },
+    {    
+    "username": "cutie",
+    "password": "cute",
+    "amount": "30000",
+    "id": 3
     }
   ],
   "profile": {
