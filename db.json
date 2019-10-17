@@ -34,11 +34,16 @@
   "borrowers": [
     {
       "id": 1,
+      "name": "Kaosilisochukwu",
+      "surname": "Nwizu",
       "username": "Kanach",
       "password": "Elmagnifico",
+      "approval": true,
       "amount": "100000"
     },
     {
+      "name": "Bliss",
+      "surname": "Okpala",
       "username": "cutie",
       "password": "cute",
       "amount": "100000",
@@ -46,6 +51,8 @@
       "id": 2
     },
     {
+      "name": "Bliss",
+      "surname": "Okpala",
       "username": "cutie",
       "password": "cute",
       "amount": "1200000001",
