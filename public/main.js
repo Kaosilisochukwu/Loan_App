@@ -246,27 +246,123 @@ $(window).ready(function () {
 })
 
 
-// $('#user-delete').click(function (e) {
-//     e.preventDefault();
-//     let ids = $('#cusId').val()
-//     let jsonD = {
 
-//         "id": `${ids}`
-//     }
-//     $.ajax({
-//         url: `http://localhost:3000/borrowers/${ids}`,
-//         method: 'DELETE',
-//         dataType: 'json',
-//         contentType: 'application/json',
-//         data: JSON.stringify(jsonD),
 
-//         success: function (data) {
-//             console.log(data);
-//             alert('successfully DELETED');
-//             location.reload();
-//         },
-//         error: function () {
-//             alert('error')
+
+
+// $(window).ready(function () {
+//     $('#change-btn').click(function (e) {
+//         e.preventDefault();
+//         let num = $('#cusId').val();
+//         let newAmount = $('#new-amount').val();
+//         let jsonData = {
+//             "amount": newAmount           
 //         }
+
+//         $.ajax({
+//             type: "PATCH",
+//             url: `http://localhost:3000/borrowers/${num}`,
+//             dataType: "json",
+//             contentType: 'application/json',
+//             data: JSON.stringify(jsonData),
+//             success: function (data) {
+//                 alert("Account successfully Created, you can now login");
+//                // window.location.href = "http://localhost:3000/login.html"
+//             }
+//         })
 //     })
 // })
+
+
+
+
+
+// $(window).ready(function () {
+//     $("#user-delete").click(function (e) {
+//         let ids = $('#cusId').val()
+//         e.preventDefault();
+//         $.ajax({
+//             type: "GET",
+//             url: "http://localhost:3000/borrowers",
+//             dataType: "json",
+//             contentType: "application/json",
+//             success: function (data) {
+//                 for (let i = 0; i < data.length; i += 1) {
+//                     if (data[i].id.toString() == ids.toString() && data[i].approval == true) {
+//                         alert('Request has already been approved')
+//                         i = data.length;
+//                     } else if( data[i].id.toString() == ids.toString() && data[i].approval == false){
+                       
+//                         let newAmount = $('#new-amount').val();
+//                         let jsonData = {
+//                             "amount": newAmount           
+//                         }
+                
+//                         $.ajax({
+//                             type: "PATCH",
+//                             url: `http://localhost:3000/borrowers/${ids}`,
+//                             dataType: "json",
+//                             contentType: 'application/json',
+//                             data: JSON.stringify(jsonData),
+//                             success: function (data) {
+//                                 alert("Account successfully Created, you can now login");
+//                                // window.location.href = "http://localhost:3000/login.html"
+//                             }
+//                         })
+//                     }
+//                 }
+//             },
+//             error: function (errorThrown) {
+//                 console.log(errorThrown);
+//             }
+//         })
+//     })
+// })
+
+
+
+
+
+
+
+$(window).ready(function () {
+    $("#change-btn").click(function (e) {
+        let ids = $('#cusId').val()
+        e.preventDefault();
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:3000/borrowers",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data) {
+                for (let i = 0; i < data.length; i += 1) {
+                    if (data[i].id.toString() == ids.toString() && data[i].approval == true) {
+                        alert('Request has already been approved')
+                        i = data.length;
+                    } else if( data[i].id.toString() == ids.toString() && data[i].approval == false){
+
+                        let newAmount = $('#new-amount').val();
+                        let jsonData = {
+                            "amount": newAmount           
+                        }
+                
+                        $.ajax({
+                            type: "PATCH",
+                            url: `http://localhost:3000/borrowers/${ids}`,
+                            dataType: "json",
+                            contentType: 'application/json',
+                            data: JSON.stringify(jsonData),
+                            success: function (data) {
+                                alert("Your Request has successfully been modified");
+                               // window.location.href = "http://localhost:3000/login.html"
+                            }
+                        })
+                    }
+                }
+            },
+            error: function (errorThrown) {
+                console.log(errorThrown);
+            }
+        })
+    })
+})

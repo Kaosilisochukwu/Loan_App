@@ -38,19 +38,19 @@
       "password": "Elmagnifico",
       "amount": "100000"
     },
-    {    
-    "username": "cutie",
-    "password": "cute",
-    "amount": "15000",
-    "approval": true,
-    "id": 2
+    {
+      "username": "cutie",
+      "password": "cute",
+      "amount": "100000",
+      "approval": true,
+      "id": 2
     },
-    {    
-    "username": "cutie",
-    "password": "cute",
-    "amount": "30000",
-    "approval": false,
-    "id": 3
+    {
+      "username": "cutie",
+      "password": "cute",
+      "amount": "1200000001",
+      "approval": false,
+      "id": 3
     }
   ],
   "profile": {
