@@ -29,6 +29,16 @@
       "password": "cute",
       "isAdmin": false,
       "id": 3
+    },
+    {
+      "name": "",
+      "surname": "",
+      "email": "",
+      "phone": "",
+      "username": "",
+      "password": "",
+      "isAdmin": false,
+      "id": 4
     }
   ],
   "borrowers": [
@@ -58,6 +68,33 @@
       "amount": "1200000001",
       "approval": false,
       "id": 3
+    },
+    {
+      "name": "",
+      "surname": "",
+      "username": null,
+      "password": null,
+      "amount": "",
+      "approval": false,
+      "id": 4
+    },
+    {
+      "name": "",
+      "surname": "",
+      "username": null,
+      "password": null,
+      "amount": "",
+      "approval": false,
+      "id": 5
+    },
+    {
+      "name": "",
+      "surname": "",
+      "username": "bibis",
+      "password": "bibis",
+      "amount": "",
+      "approval": false,
+      "id": 6
     }
   ],
   "profile": {

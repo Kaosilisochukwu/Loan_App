@@ -24,17 +24,40 @@ $(document).ready(function () {
             "isAdmin": false
         }
 
-        $.ajax({
-            url: "http://localhost:3000/users",
-            dataType: 'json',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify(jsonData),
-            success: function (data) {
-                alert("Account successfully Created, you can now login");
-                window.location.href = "http://localhost:3000/login.html"
-            }
-        })
+        if (fName == '' || fName.length < 3) {
+            $('#w-fname').text('Wrong name format')
+        }
+        if (surname == '' || surname.length < 3) {
+            $('#w-surname').text('Wrong Surname format')
+        }
+        if (email == '' || email.length < 3) {
+            $('#w-email').text('Wrong email format')
+        }
+        if (upass == '' || upass.length < 3 || upass != upass2) {
+            $('#w-pword').text('Empty field or passwords don\'t match')
+        }
+        if (uphone == '' || uphone.length < 3 || isNaN(uphone)) {
+            $('#w-num').text('Wrong phone number format')
+        }
+
+        if (uname == '' || uname.length < 3) {
+            $('#w-user').text('Wrong phone number format')
+        }
+
+        if (fName != '' && surname != '' && email != '' && upass == '' && uphone != '' && uname != '' && isNaN(uphone) && upass == upass2) {
+            $.ajax({
+                url: "http://localhost:3000/users",
+                dataType: 'json',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(jsonData),
+                success: function (data) {
+                    alert("Account successfully Created, you can now login");
+                    window.location.href = "http://localhost:3000/login.html"
+                }
+            })
+        }
+
 
     })
 })
@@ -96,25 +119,48 @@ $(window).ready(function () {
         let reqAmount = $('#loan-request').val();
         let returnDate = $('#pay-date').val();
         let myData = {
-            // "name": reqName,
-            // "surname": reqSurname,
-            "requests": reqAmount,
-            "duration": returnDate
+            "name": reqName,
+            "surname": reqSurname,
+            "username": sessionStorage.getItem('user'),
+            "password": sessionStorage.getItem('pass'),
+            "amount": reqAmount,
+            "approval": false
+
         }
-        $.ajax({
-            type: "POST",
-            url: "http://localhost:3000/borrowers",
-            dataType: "json",
-            contentType: "application/json",
-            data: JSON.stringify(myData),
-            success: function () {
-                alert('you are good to go');
-                window.location.href = "http://localhost:3000/login.html"
-            },
-            error: function (error) {
-                console.log(error)
-            }
-        })
+        if (sessionStorage.getItem('user') == null || sessionStorage.getItem('pass') == null) {
+            alert('Please Login');
+            window.location.href = "http://localhost:3000/login.html"
+            return;
+        }
+
+        if (reqName == '' || reqNamea.length < 3) {
+            $('#hiden').removeClass(`hiden`)
+        }
+
+        if (reqSurname == '' && reqSurname < 3) {
+            $('#hides').removeClass('hiden')
+        }
+
+        if (reqAmount == '' && reqSurname < 3) {
+            $('#hidea').removeClass("hiden")
+        }
+        if (reqAmount != '' && reqSurname != '' && reqAmount != '') {
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:3000/borrowers",
+                dataType: "json",
+                contentType: "application/json",
+                data: JSON.stringify(myData),
+                success: function () {
+                    alert('you are good to go');
+                    window.location.href = "http://localhost:3000/dash.html"
+                },
+                error: function (error) {
+                    console.log(error)
+                }
+            })
+        }
+
     })
 })
 
@@ -153,9 +199,9 @@ const modifyUserRequest = (ids, jsonData) => {
         dataType: "json",
         contentType: 'application/json',
         data: JSON.stringify(jsonData),
-        success: function (data) { 
+        success: function (data) {
             location.reload();
-           // window.location.href = "http://localhost:3000/login.html"
+            // window.location.href = "http://localhost:3000/login.html"
         }
     })
 }
@@ -164,7 +210,7 @@ $('#approve').click(function (e) {
     e.preventDefault();
     let ids = $('#cusId').val();
     let jsonData = {
-        "approval": true           
+        "approval": true
     }
     modifyUserRequest(ids, jsonData);
     alert(`Request ${ids} has successfully been approved`);
@@ -175,7 +221,7 @@ $('#loanDecline').click(function (e) {
     e.preventDefault();
     let ids = $('#cusId').val();
     let jsonData = {
-        "approval": false           
+        "approval": false
     }
     modifyUserRequest(ids, jsonData)
     alert(`Request ${ids} has successfully been declined`);
@@ -236,7 +282,7 @@ $(window).ready(function () {
                     if (data[i].id.toString() == ids.toString() && data[i].approval == true) {
                         alert('Request has already been approved')
                         i = data.length;
-                    } else if( data[i].id.toString() == ids.toString() && data[i].approval == false){
+                    } else if (data[i].id.toString() == ids.toString() && data[i].approval == false) {
 
                         let jsonD = {
 
@@ -273,7 +319,7 @@ $(window).ready(function () {
 
 $(window).ready(function () {
     $("#change-btn").click(function (e) {
-        let ids = $('#cusId').val();        
+        let ids = $('#cusId').val();
         e.preventDefault();
         $.ajax({
             type: "GET",
@@ -285,21 +331,21 @@ $(window).ready(function () {
 
                     let newAmount = $('#new-amount').val();
                     let jsonData = {
-                        "amount": newAmount           
+                        "amount": newAmount
                     }
-                    if(newAmount == ''){
+                    if (newAmount == '') {
                         alert('Incorrect value for new amount')
                         break;
                     }
-                    
+
                     if (data[i].id.toString() == ids.toString() && data[i].approval == true) {
                         alert('Request has already been approved')
                         i = data.length;
                         location.reload();
-                    } else if( data[i].id.toString() == ids.toString() && data[i].approval == false){
+                    } else if (data[i].id.toString() == ids.toString() && data[i].approval == false) {
 
 
-                
+
                         $.ajax({
                             type: "PATCH",
                             url: `http://localhost:3000/borrowers/${ids}`,
@@ -309,7 +355,7 @@ $(window).ready(function () {
                             success: function () {
                                 alert("Your Request has successfully been modified");
                                 location.reload();
-                               // window.location.href = "http://localhost:3000/login.html"
+                                // window.location.href = "http://localhost:3000/login.html"
                             }
                         })
                     }

@@ -34,10 +34,14 @@ label {
     border-radius: 5px;
     margin: 0 80px;
     background: #74b49450;
-    padding: 20px 30%;
+    padding: 20px 20%;
 }
 .container h1{
     width: 100%;
+}
+.hiden {
+  display: none;
+  color: red;
 }
 .col-25{
     float: left;
