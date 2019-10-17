@@ -29,16 +29,6 @@
       "password": "cute",
       "isAdmin": false,
       "id": 3
-    },
-    {
-      "name": "",
-      "surname": "",
-      "email": "",
-      "phone": "",
-      "username": "",
-      "password": "",
-      "isAdmin": false,
-      "id": 4
     }
   ],
   "borrowers": [
