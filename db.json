@@ -6,7 +6,7 @@
       "surname": "Nwizu",
       "email": "kcharlse94@gmail.com",
       "phone": "08106379424",
-      "username": "Kanach",
+      "username": "kanach",
       "password": "Elmagnifico",
       "isAdmin": true
     },
@@ -29,6 +29,16 @@
       "password": "cute",
       "isAdmin": false,
       "id": 3
+    },
+    {
+      "name": "Chidalu",
+      "surname": "Igwe",
+      "email": "dalu@gmail.com",
+      "phone": "545456",
+      "username": "dalu",
+      "password": "dalu",
+      "isAdmin": false,
+      "id": 4
     }
   ],
   "borrowers": [
@@ -38,6 +48,7 @@
       "surname": "Nwizu",
       "username": "Kanach",
       "password": "Elmagnifico",
+      "userId": 1,
       "approval": true,
       "amount": "100000"
     },
@@ -47,6 +58,7 @@
       "username": "cutie",
       "password": "cute",
       "amount": "100000",
+      "userId": 3,
       "approval": true,
       "id": 2
     },
@@ -55,36 +67,20 @@
       "surname": "Okpala",
       "username": "cutie",
       "password": "cute",
+      "userId": 3,
       "amount": "1200000001",
       "approval": false,
       "id": 3
     },
     {
-      "name": "",
-      "surname": "",
-      "username": null,
-      "password": null,
-      "amount": "",
+      "name": "Chidalu",
+      "surname": "Igwe",
+      "username": "dalu",
+      "userId": 4,
+      "password": "dalu",
+      "amount": "50000",
       "approval": false,
       "id": 4
-    },
-    {
-      "name": "",
-      "surname": "",
-      "username": null,
-      "password": null,
-      "amount": "",
-      "approval": false,
-      "id": 5
-    },
-    {
-      "name": "",
-      "surname": "",
-      "username": "bibis",
-      "password": "bibis",
-      "amount": "",
-      "approval": false,
-      "id": 6
     }
   ],
   "profile": {

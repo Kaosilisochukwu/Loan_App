@@ -11,9 +11,9 @@ $(document).ready(function () {
         let surname = $('#surname').val();
         let email = $('#email').val();
         let uphone = $('#phone').val();
-        let uname = $('#uname').val();
+        let uname = $('#uname').val().toLowerCase();
         let upass = $('#pword').val();
-        let upass2 = $('password2').val();
+        let upass2 = $('#password2').val();
         let jsonData = {
             "name": fName,
             "surname": surname,
@@ -23,17 +23,17 @@ $(document).ready(function () {
             "password": upass,
             "isAdmin": false
         }
-
+        console.log(upass2)
         if (fName == '' || fName.length < 3) {
             $('#w-fname').text('Wrong name format')
         }
         if (surname == '' || surname.length < 3) {
             $('#w-surname').text('Wrong Surname format')
         }
-        if (email == '' || email.length < 3) {
+        if (email == '' || email.length < 3 || !email.includes('@') || !email.includes('.')) {
             $('#w-email').text('Wrong email format')
         }
-        if (upass == '' || upass.length < 3 || upass != upass2) {
+        if (upass == '' || upass.length < 3 || upass.toString() != upass2.toString()) {
             $('#w-pword').text('Empty field or passwords don\'t match')
         }
         if (uphone == '' || uphone.length < 3 || isNaN(uphone)) {
@@ -44,7 +44,7 @@ $(document).ready(function () {
             $('#w-user').text('Wrong phone number format')
         }
 
-        if (fName != '' && surname != '' && email != '' && upass == '' && uphone != '' && uname != '' && isNaN(uphone) && upass == upass2) {
+        if (fName != '' && surname != '' && email != '' && upass != '' && uphone != '' && uname != '' && !isNaN(uphone) && upass == upass2 && email.includes('@') && email.includes('.')) {
             $.ajax({
                 url: "http://localhost:3000/users",
                 dataType: 'json',
@@ -73,7 +73,7 @@ $('#logout').click(function (e) {
 $(document).ready(function () {
     $('#login-btn').click(function (e) {
         e.preventDefault();
-        let logUser = $('#username').val();
+        let logUser = $('#username').val().toLowerCase();
         let logPass = $('#password').val();
 
         $.ajax({
@@ -83,21 +83,27 @@ $(document).ready(function () {
             contentType: "application/json",
             success: function (data) {
                 for (let i = 0; i < data.length; i += 1) {
-                    if (data[i].username.toString() == logUser.toString() && data[i].password.toString() == logPass.toString() && data[i].isAdmin == true) {
+                    if (data[i].username.toString() != logUser.toString() || data[i].password.toString() != logPass.toString()) {
+
+                    } else if (data[i].username.toString() == logUser.toString() && data[i].password.toString() == logPass.toString() && data[i].isAdmin == true) {
                         sessionStorage.setItem('user', data[i].username);
                         sessionStorage.setItem('pass', data[i].password);
                         sessionStorage.setItem('id', data[i].id);
                         alert("Admin login");
                         window.location.href = "http://localhost:3000/admin.html"
+                        return;
                     } else if (data[i].username.toString() == logUser.toString() && data[i].password.toString() == logPass.toString()) {
                         sessionStorage.setItem('user', data[i].username);
                         sessionStorage.setItem('pass', data[i].password);
                         sessionStorage.setItem('id', data[i].id);
                         console.log(sessionStorage.getItem('id'))
                         alert(`welcome ${logUser}`);
+
                         window.location.href = "http://localhost:3000/dash.html"
+                        return;
                     }
                 }
+                alert('Incorrect Username or password')
             },
             error: function (errorThrown) {
                 console.log(errorThrown);
@@ -106,10 +112,6 @@ $(document).ready(function () {
     })
 })
 
-// $('#user-requests').click(function (e) {
-//     e.preventDefault();
-//     $('#user-dash').addClass('#remove')
-// })
 
 $(window).ready(function () {
     $('#request-btn').click(function (e) {
@@ -121,19 +123,20 @@ $(window).ready(function () {
         let myData = {
             "name": reqName,
             "surname": reqSurname,
+            "userId": sessionStorage.getItem('id'),
             "username": sessionStorage.getItem('user'),
             "password": sessionStorage.getItem('pass'),
             "amount": reqAmount,
-            "approval": false
+            "approval": ''
 
         }
-        if (sessionStorage.getItem('user') == null || sessionStorage.getItem('pass') == null) {
+        if (sessionStorage.getItem('user') == null || sessionStorage.getItem('pass') == null || sessionStorage.getItem('id') == null) {
             alert('Please Login');
             window.location.href = "http://localhost:3000/login.html"
             return;
         }
 
-        if (reqName == '' || reqNamea.length < 3) {
+        if (reqName == '' || reqName.length < 3) {
             $('#hiden').removeClass(`hiden`)
         }
 
@@ -178,6 +181,7 @@ $(window).ready(function () {
                     $("#customers").append(`<tr>
                         <td id="table-duration">${data[i].id}</td>
                         <td id="table-name">${data[i].name}</td>
+                        <td id="table-name">${data[i].userId}</td>
                         <td id="table-surname">${data[i].surname}</td>
                         <td id="table-amount">${data[i].amount}</td>
                         <td id="table-amount">${data[i].approval}</td>       
@@ -201,7 +205,6 @@ const modifyUserRequest = (ids, jsonData) => {
         data: JSON.stringify(jsonData),
         success: function (data) {
             location.reload();
-            // window.location.href = "http://localhost:3000/login.html"
         }
     })
 }
@@ -240,11 +243,25 @@ $(window).ready(function () {
             success: function (data) {
                 for (let i = 0; i < data.length; i += 1) {
                     if (data[i].username.toString() == sessionStorage.getItem('user').toString()) {
-                        $("#dash-request").append(`<tr>
-                        <td id="table-duration">${data[i].id}</td>
-                        <td id="table-amount">${data[i].amount}</td>
-                        <td id="table-amount">${data[i].approval}</td> 
-                      </tr>`)
+                        if (data[i].approval === true) {
+                            $("#dash-request").append(`<tr>
+                            <td id="table-duration">${data[i].id}</td>
+                            <td id="table-amount">${data[i].amount}</td>
+                            <td id="table-amount">Request Approved</td> 
+                          </tr>`)
+                        } else if (data[i].approval === false) {
+                            $("#dash-request").append(`<tr>
+                            <td id="table-duration">${data[i].id}</td>
+                            <td id="table-amount">${data[i].amount}</td>
+                            <td id="table-amount">Request Declined</td> 
+                          </tr>`)
+                        } else {
+                            $("#dash-request").append(`<tr>
+                            <td id="table-duration">${data[i].id}</td>
+                            <td id="table-amount">${data[i].amount}</td>
+                            <td id="table-amount">Request Pending</td> 
+                          </tr>`)
+                        }
                     }
                 }
             },
