@@ -69,6 +69,7 @@ $('#id').text(`${sessionStorage.getItem('user')}`)
 $('#logout').click(function (e) {
     e.preventDefault();
     sessionStorage.clear();
+    myId = [];
     window.location.href = "http://localhost:3000/main.html"
 })
 
@@ -367,7 +368,6 @@ $(window).ready(function () {
                             alert('Incorrect value for new amount')
                             break;
                         }
-
                         if (data[i].id.toString() == ids.toString() && data[i].approval == true) {
                             alert('Request has already been approved')
                             i = data.length;
