@@ -68,7 +68,7 @@
       "username": "cutie",
       "password": "cute",
       "userId": 3,
-      "amount": "1200000001",
+      "amount": "7000000000",
       "approval": false,
       "id": 3
     },
@@ -78,8 +78,8 @@
       "userId": "2",
       "username": "bibis",
       "password": "bibis",
-      "amount": "78000",
-      "approval": true,
+      "amount": "4500000000",
+      "approval": false,
       "id": 5
     }
   ],

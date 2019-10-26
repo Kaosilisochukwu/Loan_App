@@ -235,7 +235,7 @@ $('#loanDecline').click(function (e) {
     alert(`Request ${ids} has successfully been declined`);
 })
 
-let myId = []
+
 //function for user to get thier requests
 $(window).ready(function () {
     $("#user-requests").click(function (e) {
@@ -250,14 +250,12 @@ $(window).ready(function () {
 
                     if (data[i].userId == sessionStorage.getItem('id')) {
                         if (data[i].approval === true) {
-                            myId.push(data[i].id)
                             $("#dash-request").append(`<tr>
                             <td id="table-duration">${data[i].id}</td>
                             <td id="table-amount">${data[i].amount}</td>
                             <td id="table-amount">Request Approved</td> 
                           </tr>`)
                         } else if (data[i].approval === false) {
-                            myId.push(data[i].id)
                             $("#dash-request").append(`<tr>
                             <td id="table-duration">${data[i].id}</td>
                             <td id="table-amount">${data[i].amount}</td>
@@ -304,7 +302,6 @@ $(window).ready(function () {
             dataType: "json",
             contentType: "application/json",
             success: function (data) {
-                if (myId.includes(ids)) {
                     for (let i = 0; i < data.length; i += 1) {
 
                         if (data[i].id.toString() == ids.toString() && data[i].approval == true) {
@@ -333,9 +330,7 @@ $(window).ready(function () {
                             })
                         }
                     }
-                } else {
-                    alert(`You Don't have a request with id: ${ids}`)
-                }
+               
             },
             error: function (errorThrown) {
                 console.log(errorThrown);
@@ -357,7 +352,6 @@ $(window).ready(function () {
             dataType: "json",
             contentType: "application/json",
             success: function (data) {
-                if (myId.includes(ids)) {
                     for (let i = 0; i < data.length; i += 1) {
 
                         let newAmount = $('#new-amount').val();
@@ -388,9 +382,7 @@ $(window).ready(function () {
                             })
                         }
                     }
-                } else {
-                    alert(`You Don't have a request with id: ${ids}`)
-                }
+               
             },
             error: function (errorThrown) {
                 console.log(errorThrown);
