@@ -73,14 +73,14 @@
       "id": 3
     },
     {
-      "name": "Chidalu",
-      "surname": "Igwe",
-      "username": "dalu",
-      "userId": 4,
-      "password": "dalu",
-      "amount": "50000",
-      "approval": false,
-      "id": 4
+      "name": "Obinwanne",
+      "surname": "Nwizu",
+      "userId": "2",
+      "username": "bibis",
+      "password": "bibis",
+      "amount": "78000",
+      "approval": true,
+      "id": 5
     }
   ],
   "profile": {
