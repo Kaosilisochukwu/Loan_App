@@ -39,6 +39,16 @@
       "password": "dalu",
       "isAdmin": false,
       "id": 4
+    },
+    {
+      "name": "Kaosilisochukwu",
+      "surname": "Okpala",
+      "email": "kcharlse94@gmail.com",
+      "phone": "4047493839",
+      "username": "bibis",
+      "password": "password",
+      "isAdmin": false,
+      "id": 5
     }
   ],
   "borrowers": [
@@ -81,6 +91,36 @@
       "amount": "4500000000",
       "approval": false,
       "id": 5
+    },
+    {
+      "name": "Obinwanne",
+      "surname": "Obinwanne",
+      "userId": "5",
+      "username": "bibis",
+      "password": "password",
+      "amount": "400000",
+      "approval": "",
+      "id": 6
+    },
+    {
+      "name": "jdkoija",
+      "surname": "jdkoija",
+      "userId": "5",
+      "username": "bibis",
+      "password": "password",
+      "amount": "455566",
+      "approval": true,
+      "id": 7
+    },
+    {
+      "name": "Kaosilisochukwu",
+      "surname": "Okpala",
+      "userId": "5",
+      "username": "bibis",
+      "password": "password",
+      "amount": "50000",
+      "approval": false,
+      "id": 8
     }
   ],
   "profile": {
